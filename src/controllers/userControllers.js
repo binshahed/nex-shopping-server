@@ -8,7 +8,7 @@ module.exports.signUp = async (req, res) => {
 
   const { error } = validate(req.body); // Use destructuring to get the 'error' property
   if (error) {
-    return res.status(400).send("something went wrong!!!");
+    return res.status(400).send(error.details[0].message);
   }
   let user = {};
 
