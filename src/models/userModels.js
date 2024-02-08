@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 
-const UserSchema = new Schema(
+const userSchema = new Schema(
   {
     name: {
       type: String,
@@ -16,6 +16,15 @@ const UserSchema = new Schema(
       unique: true,
       maxlength: 255,
       minlength: [5, "Must be at least 5"],
+    },
+    phone: {
+      type: String,
+      maxlength: 15,
+      minlength: [11, "Must be at least 11"],
+    },
+    address: {
+      type: String,
+      maxlength: 1024,
     },
     password: {
       type: String,
@@ -50,4 +59,5 @@ const validateUser = (user) => {
   return schema.validate(user);
 };
 
-module.exports.UserSchema = User;
+module.exports.User = model("User", userSchema);
+module.exports.validate = validateUser;

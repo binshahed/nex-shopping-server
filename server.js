@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 mongoose
   .connect(process.env.MONGO_URL_LOCAL, {})
   .then(() => console.log("connected"))
-  .catch((err) => console.log("error", err));
+  .catch((err) => console.log("connection failed"));
 
 const port = process.env.PORT || 3001;
 
