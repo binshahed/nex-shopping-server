@@ -15,6 +15,8 @@ module.exports.createCategory = async (req, res) => {
     return res.status(400).send("Category already exist");
   }
 
+  console.log("category", _.pick(req.body, ["name"]));
+
   category = new Category(_.pick(req.body, ["name"]));
 
   const result = await category.save();
@@ -25,7 +27,9 @@ module.exports.createCategory = async (req, res) => {
 };
 
 module.exports.getCategories = async (req, res) => {
-  const categories = await Category.find().sort({ name: 1 });
+  const categories = await Category.find()
+    .select({ _id: 1, name: 1 })
+    .sort({ name: 1 });
 
   return res.status(200).send(categories);
 };
