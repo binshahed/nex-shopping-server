@@ -30,6 +30,7 @@ module.exports.Product = model(
         data: Buffer,
         contentType: String,
       },
+
       category: {
         type: Schema.Types.ObjectId,
         ref: "Category",
