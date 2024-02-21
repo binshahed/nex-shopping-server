@@ -33,3 +33,9 @@ module.exports.getCategories = async (req, res) => {
 
   return res.status(200).send(categories);
 };
+module.exports.getCategoryId = async (req, res) => {
+  const categoryId = req.params.id;
+  const category = await Category.findById(categoryId);
+
+  return res.status(200).send(category);
+};
