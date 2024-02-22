@@ -215,7 +215,7 @@ module.exports.filterProducts = async (req, res) => {
     }
   }
 
-
+  console.log("arg", args);
 
   const products = await Product.find(args)
     .select({ photoUrl: 0 })
