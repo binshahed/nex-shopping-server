@@ -68,7 +68,7 @@ module.exports.getProducts = async (req, res) => {
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
   let limit = req.query.limit ? parseInt(req.query.limit) : 10;
 
-  console.log(req.query);
+
   try {
     const products = await Product.find()
       .select({ photoUrl: 0 })
@@ -215,7 +215,7 @@ module.exports.filterProducts = async (req, res) => {
     }
   }
 
-  console.log("arg", args);
+
 
   const products = await Product.find(args)
     .select({ photoUrl: 0 })
