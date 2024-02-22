@@ -6,10 +6,10 @@ const cartRouter = require("../routers/cartRouter");
 const profileRouter = require("../routers/profileRouter");
 
 module.exports = (app) => {
-  app.use("/api/user", userRouter);
-  app.use("/api/category", categoryRouter);
-  app.use("/api/brand", brandRouter);
-  app.use("/api/product", productRouter);
-  app.use("/api/cart", cartRouter);
-  app.use("/api/profile", profileRouter);
+  app.use("/api/v1/user", userRouter);
+  app.use("/api/v1/category", categoryRouter);
+  app.use("/api/v1/brand", brandRouter);
+  app.use("/api/v1/product", productRouter);
+  app.use("/api/v1/cart", cartRouter);
+  app.use("/api/v1/profile", profileRouter);
 };

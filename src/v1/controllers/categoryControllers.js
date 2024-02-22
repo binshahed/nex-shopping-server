@@ -15,7 +15,7 @@ module.exports.createCategory = async (req, res) => {
     return res.status(400).send("Category already exist");
   }
 
-  console.log("category", _.pick(req.body, ["name"]));
+ 
 
   category = new Category(_.pick(req.body, ["name"]));
 
