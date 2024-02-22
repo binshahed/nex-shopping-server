@@ -8,8 +8,8 @@ const {
 const admin = require("../middlewares/admin");
 const authorize = require("../middlewares/authorize");
 
-router.route("/brand").post([authorize, admin], createBrand);
-router.route("/brand").get(getBrands);
-router.route("/brand/:id").get(getBrandsById);
+router.route("/").post([authorize, admin], createBrand);
+router.route("/").get(getBrands);
+router.route("/:id").get(getBrandsById);
 
 module.exports = router;
