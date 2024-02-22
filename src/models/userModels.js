@@ -17,15 +17,15 @@ const userSchema = new Schema(
       maxlength: 255,
       minlength: [5, "Must be at least 5"],
     },
-    phone: {
-      type: String,
-      maxlength: 15,
-      minlength: [11, "Must be at least 11"],
-    },
-    address: {
-      type: String,
-      maxlength: 1024,
-    },
+    // phone: {
+    //   type: String,
+    //   maxlength: 15,
+    //   minlength: [11, "Must be at least 11"],
+    // },
+    // address: {
+    //   type: String,
+    //   maxlength: 1024,
+    // },
     password: {
       type: String,
       required: true,

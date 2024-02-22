@@ -24,10 +24,17 @@ module.exports.createBrand = async (req, res) => {
   });
 };
 
-module.exports.getBrand = async (req, res) => {
+module.exports.getBrands = async (req, res) => {
   const brand = await Brand.find()
     .select({ _id: 1, name: 1 })
     .sort({ name: 1 });
+
+  return res.status(200).send(brand);
+};
+
+module.exports.getBrandsById = async (req, res) => {
+  const brandId = req.params.id;
+  const brand = await Brand.findById(brandId);
 
   return res.status(200).send(brand);
 };
