@@ -40,6 +40,5 @@ module.exports.deleteCartItem = async (req, res) => {
   const _id = req.params.id;
   const userId = req.user._id;
   await CartItem.deleteOne({ user: userId, _id: _id });
-
   return res.status(200).send({ message: "item deleted!!" });
 };

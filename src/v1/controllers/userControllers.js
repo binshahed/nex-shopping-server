@@ -33,12 +33,13 @@ module.exports.signUp = async (req, res) => {
   return res.status(201).send({
     message: "Registration Successful!",
     token,
-    user: _.pick(result, ["_id", "name", "email"]),
+    user: _.pick(result, ["_id", "name", "email", "role"]),
   });
 };
 
 // sign in
 module.exports.signIn = async (req, res) => {
+  console.log(req.body);
   // checking valid email
   let user = await User.findOne({ email: req.body.email });
   if (!user) {
@@ -57,6 +58,6 @@ module.exports.signIn = async (req, res) => {
   return res.status(200).send({
     message: "Login Successful!",
     token,
-    user: _.pick(user, ["_id", "name", "email"]),
+    user: _.pick(user, ["_id", "name", "email", "role"]),
   });
 };
