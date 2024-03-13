@@ -17,7 +17,7 @@ module.exports.Brand = model(
 
 module.exports.validate = (brand) => {
   const schema = Joi.object({
-    name: Joi.string().min(3).max(50).required(),
+    name: Joi.string().min(2).max(50).required(),
   });
   return schema.validate(brand);
 };

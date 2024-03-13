@@ -3,9 +3,7 @@ const jwt = require("jsonwebtoken");
 module.exports = async function (req, res, next) {
   let token = req.headers.authorization;
   if (!token) {
-    return res
-      .status(401)
-      .send({ message: "Access denied! No token provided" });
+    return res.status(401).send("Access denied! No token provided");
   }
 
   token = token.split(" ")[1].trim();
@@ -16,10 +14,8 @@ module.exports = async function (req, res, next) {
     next();
   } catch (err) {
     if (err.name === "TokenExpiredError") {
-      return res
-        .status(401)
-        .send({ message: "Access denied! Token has expired" });
+      return res.status(401).send("Access denied! Token has expired");
     }
-    return res.status(401).send({ message: "Access denied! Invalid token" });
+    return res.status(401).send("Access denied! Invalid token");
   }
 };
