@@ -7,11 +7,14 @@ const {
   updateProductById,
   getPhoto,
   filterProducts,
+  searchProducts,
 } = require("../controllers/productController");
 const admin = require("../middlewares/admin");
 const authorize = require("../middlewares/authorize");
 
 router.route("/").get(getProducts).post([authorize, admin], createProduct);
+
+router.route("/search").post(searchProducts);
 
 router
   .route("/:id")
