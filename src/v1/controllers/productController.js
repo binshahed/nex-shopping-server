@@ -1,7 +1,10 @@
 const _ = require("lodash");
 const { Product, validate } = require("../models/productModel");
+const { Category } = require("../models/categoryModel");
+const { Brand } = require("../models/brandModel");
 const formidable = require("formidable");
 const fs = require("fs");
+const mongoose = require("mongoose");
 
 // create product
 module.exports.createProduct = async (req, res) => {
@@ -223,4 +226,45 @@ module.exports.filterProducts = async (req, res) => {
     .limit(limit);
 
   return res.status(200).send(products);
+};
+
+module.exports.searchProducts = async (req, res) => {
+  const searchTerm = req.query.q;
+  try {
+    // Find category IDs matching the search term
+    const categoryIds = await Category.find({
+      name: { $regex: searchTerm, $options: "i" },
+    }).distinct("_id");
+
+    // Find brand IDs matching the search term
+    const brandIds = await Brand.find({
+      name: { $regex: searchTerm, $options: "i" },
+    }).distinct("_id");
+
+    // Find products with similar name, category, or brand
+    const similarProducts = await Product.find({
+      $or: [
+        { name: { $regex: searchTerm, $options: "i" } },
+        {
+          category: {
+            $in: categoryIds.map((id) =>
+              new mongoose.Types.ObjectId(id).toString()
+            ),
+          },
+        },
+        {
+          brand: {
+            $in: brandIds.map((id) =>
+              new mongoose.Types.ObjectId(id).toString()
+            ),
+          },
+        },
+      ],
+    }).select({ photoUrl: 0 });
+
+    res.json(similarProducts);
+  } catch (error) {
+    console.error("Error searching for products:", error);
+    res.status(500).json(error);
+  }
 };
