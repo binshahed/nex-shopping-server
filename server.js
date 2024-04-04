@@ -3,7 +3,7 @@ const app = require("./src/app");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb+srv://mdbinshahed5:jmwMbNqIdZzwtYce@cluster0.qxxv3j9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {})
+  .connect(process.env.MONGO_URL_LOCAL, {})
   .then(() => console.log("connected"))
   .catch((err) => console.log("connection failed", err));
 
